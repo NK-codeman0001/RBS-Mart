@@ -1,7 +1,6 @@
 import { View, Text,Image, TouchableOpacity,Alert, StyleSheet } from 'react-native';
 import React,{useState} from 'react';
 import { TextInput, Button } from 'react-native-paper';
-import KeyboardAvoidingView from 'react-native/Libraries/Components/Keyboard/KeyboardAvoidingView';
 import auth from '@react-native-firebase/auth';
 
 const LoginScreen = ({navigation}) => {
@@ -14,7 +13,6 @@ const LoginScreen = ({navigation}) => {
     }
     try{
       const result = await auth().signInWithEmailAndPassword(email,password)
-      console.log(result.user)
     }
     catch(err){
       Alert.alert(`Something went wrong ${err}`)
@@ -22,7 +20,6 @@ const LoginScreen = ({navigation}) => {
   }
 
   return (
-    <KeyboardAvoidingView behaviour="position">
     <View >
       <View>
         <Image style={styles.logo} source={require('../assets/logo.png')} />
@@ -49,7 +46,6 @@ const LoginScreen = ({navigation}) => {
   <TouchableOpacity onPress={()=>navigation.navigate("SignUp")}><Text style={styles.link}>Don't have an account? click here</Text></TouchableOpacity>
   </View>
     </View>
-    </KeyboardAvoidingView>
   )
   
 }
