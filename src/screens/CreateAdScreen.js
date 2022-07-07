@@ -16,7 +16,7 @@ const CreateAdScreen = () => {
   const [desc,setDesc]=useState('')
   const [year,setYear]=useState('')
   const [price,setPrice]=useState('')
-  const [phone,setPhone]=useState('+91')
+  const [phone,setPhone]=useState('')
   const [image,setImage] = useState("")
   const [postDate,setPostDate] = useState(time.toDateString())
   const [timestamp,setTimestamp] = useState(time)
@@ -142,7 +142,8 @@ const CreateAdScreen = () => {
     value={phone}
     keyboardType="numeric"
     mode="outlined"
-    onChangeText={phone => setPhone(phone)}
+    onChangeText={phone => 
+      setPhone(phone)}
   />
   
      <Button icon="camera" mode="contained" style={styles.text} onPress={() => {openCam()
@@ -159,7 +160,11 @@ const CreateAdScreen = () => {
 
   
   <Button mode="contained" disabled={image?false:true} style={styles.text} onPress={() => {
-    postData()
+      const phoneno = /^\d{10}$/;
+      if(phone.match(phoneno))
+      postData()
+      else
+      Alert.alert("Phone Number is not correct")
     }}>
     Post Ad
   </Button>
