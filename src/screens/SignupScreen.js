@@ -39,14 +39,10 @@ const userSignUp = async () =>{
       label="Password"
       value={password}
       mode="outlined"
-      placeholder='Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters'
+      //placeholder='Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters'
       secureTextEntry={true}
       onChangeText={password =>{
-      const passw=  /^[A-Za-z]\w{7,14}$/;
-      if(password.match(passw))
-      setPassword(password)
-      else
-      Alert.alert("Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters")
+        setPassword(password)
       }}
     />
     <TextInput
@@ -57,6 +53,7 @@ const userSignUp = async () =>{
       onChangeText={confirmPassword => setConfirmPassword(confirmPassword)}
     />
     <Button mode="contained" style={styles.text} onPress={() => {
+      const passw=  /^[A-Za-z]\w{7,14}$/;
       if(password!=confirmPassword )
       Alert.alert("Confirm Password Doesn't Match");
       else if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value))
